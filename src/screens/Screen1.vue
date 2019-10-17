@@ -19,7 +19,7 @@ export default {
   },
   methods: {
       goToScreen2() {
-        this.navigation.navigate('ScreenTwo')
+        this.navigation.navigate('Screen2')
       }
   },
 }
