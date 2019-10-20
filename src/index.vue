@@ -8,7 +8,10 @@
 import Navigation from "./navigation";
 import Vue from "vue-native-core";
 import { VueNativeBase } from "native-base";
+import ScreenWithDrawer from '@/components/ScreenWithDrawer'
+
 Vue.use(VueNativeBase);
+Vue.component('ScreenWithDrawer', ScreenWithDrawer)
 export default {
   components: {
     Navigation
@@ -17,7 +20,7 @@ export default {
 </script>
 
 <style>
-.container {
-  flex: 1;
-}
+  .container {
+    flex: 1;
+  }
 </style>

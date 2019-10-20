@@ -25,14 +25,27 @@ const HomeStack = createStackNavigator(
     initialRouteName: "Home"
   }
 );
-// const SomeOtherStack = createStackNavigator({
-//   Screen2,
-//   Screen3
-// });
+
+const SomeOtherStack = createStackNavigator({
+    Screen2
+  },{
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false
+    }
+  })
+const SomeOtherOtherStack = createStackNavigator({
+  Screen3
+},{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false
+  }
+})
 
 const DrawerNavigation = createDrawerNavigator({
-  Screen2,
-  Screen3
+  SomeOtherStack,
+  SomeOtherOtherStack
 });
 
 const TabNavigation = createBottomTabNavigator({
