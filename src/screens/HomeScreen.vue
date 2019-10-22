@@ -1,11 +1,11 @@
 <template>
-  <view>
-    <text class="text-color-primary">{{title}}</text>
-    <Hello />
-    <nb-button :on-press="goToScreen1" iconRight>
-      <nb-text>Click Me!</nb-text>
-    </nb-button>
-  </view>
+  <scroll-view>
+    <nb-list>
+      <nb-list-item v-for="todo in todos" :key="todo.id">
+        <nb-text>{{todo.title}}</nb-text>
+      </nb-list-item>
+    </nb-list>
+  </scroll-view>
 </template>
 
 <script>
@@ -21,8 +21,16 @@ export default {
   },
   data() {
     return {
-      title: "Home screen"
+      title: "Home screen",
     };
+  },
+  computed: {
+    todos () {
+      return this.$store.state.todos
+    }
+  },
+  created() {
+    this.$store.dispatch('fetchTodo')
   },
   methods: {
     goToScreen1() {
