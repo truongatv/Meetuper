@@ -1,18 +1,19 @@
 import Vuex from 'vuex'
 import Vue from 'vue-native-core'
 import axios from 'axios'
-import { Platform } from 'react-native'
+
+import meetups from './modules/meetups'
+
 
 Vue.use(Vuex)
 
-const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:3001/api/v1'
-                                       : 'http://10.0.3.2:3001/api/v1'
-
 export default new Vuex.Store({
+    modules: {
+        meetups
+    },
     //Like data in component. keeping our data in the state
     state: {
-        todos: [],
-        meetups: []
+        todos: []
     },
     //Like computed properties in components.
     //You can use getters to access state in the store
@@ -27,14 +28,6 @@ export default new Vuex.Store({
             const todos = res.data;
             commit('setTodos', todos);
             return state.todos;
-        },
-        fetchMeetups ({commit, state}) {
-            return axios.get(`${BASE_URL}/meetups`)
-                .then(res => {
-                    const meetups = res.data
-                    commit('setMeetups', meetups)
-                    return state.meetups
-                })
         }
     }, 
     //Like methods in components.
@@ -42,9 +35,6 @@ export default new Vuex.Store({
     mutations: {
         setTodos (state, todos) {
             Vue.set(state, 'todos', todos)
-        },
-        setMeetups (state, meetups) {
-            Vue.set(state, 'meetups', meetups)
         }
     }
 })

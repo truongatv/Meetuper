@@ -21,20 +21,20 @@ export default {
   },
   data() {
     return {
-      title: "Home screen",
+      title: "Home screen"
     };
   },
   computed: {
-    todos () {
-      return this.$store.state.todos
+    todos() {
+      return this.$store.state.todos;
     },
-    meetups () {
-      return this.$store.state.meetups
+    meetups() {
+      return this.$store.state.meetups.items;
     }
   },
   created() {
-    this.$store.dispatch('fetchTodo')
-    this.$store.dispatch('fetchMeetups')
+    this.$store.dispatch("fetchTodo");
+    this.$store.dispatch("meetups/fetchMeetups");
   },
   methods: {
     goToScreen1() {
