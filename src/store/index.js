@@ -3,8 +3,9 @@ import Vue from 'vue-native-core'
 import axios from 'axios'
 import meetups from './modules/meetups'
 
-Vue.use(Vuex)
+import meetups from './modules/meetups'
 
+Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
         meetups

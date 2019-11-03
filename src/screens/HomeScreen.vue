@@ -56,8 +56,8 @@ export default {
     };
   },
   computed: {
-    todos () {
-      return this.$store.state.todos
+    todos() {
+      return this.$store.state.todos;
     },
     meetups () {
       return this.$store.state.meetups.items
@@ -66,6 +66,7 @@ export default {
   created() {
     this.$store.dispatch('fetchTodo')
     this.$store.dispatch('meetups/fetchMeetups')
+
   },
   methods: {
     goToScreen1() {
