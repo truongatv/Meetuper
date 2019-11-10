@@ -25,7 +25,7 @@
           </nb-button>
         </nb-left>
         <nb-right>
-          <nb-button>
+          <nb-button :on-press="() => navigateToDetail(meetup._id)">
             <nb-text>Visit meetup</nb-text>
           </nb-button>
         </nb-right>
@@ -37,6 +37,10 @@ export default {
     props: {
         meetup: {
             type: Object,
+            required: true
+        },
+        navigateToDetail: {
+            type: Function,
             required: true
         }
     },
@@ -50,7 +54,7 @@ export default {
             }
         }
       }
-    }
+    },
 }
 </script>
 <style>
