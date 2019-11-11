@@ -1,77 +1,40 @@
 <template>
-    <nb-container>
+    <nb-container v-if="isMeetupLoaded">
         <!-- meetup title -->
-        <nb-h1 :style="[styles.headerOne, styles.container]">Hiking in Almada</nb-h1>
-        <!-- meetup creator avatar  -->
-        <nb-thumbnail />
+        <view :style="styles.container">
+            <nb-h1 :style="styles.headerOne">{{meetup.title}}</nb-h1>
+            <!-- meetup creator avatar  -->
+            <nb-thumbnail :source="{uri: meetupCreator.avatar }" />
+            <nb-text :style="styles.label">
+                by {{meetupCreator.name}}
+            </nb-text>
+        </view>
         <!-- apply styles label and padding left -->
         <!-- meetup creator name -->
-        <nb-text :style="styles.label">
-            by Filip Jerga
-        </nb-text>
         <nb-content>
             <nb-card>
-            <nb-card-item header bordered>
-                <nb-text>Details</nb-text>
-            </nb-card-item>
-            <nb-card-item bordered>
-                <nb-body>
-                <!-- Label Styles -->
-                <nb-text :style="styles.label">
-                    Date
-                </nb-text>
-                <nb-text>
-                    14th Feb 2018
-                </nb-text>
-                <!-- Label Styles -->
-                <nb-text :style="styles.label">
-                    From
-                </nb-text>
-                <nb-text>
-                    14:00
-                </nb-text>
-                <!-- Label Styles -->
-                <nb-text :style="styles.label">
-                    To
-                </nb-text>
-                <nb-text>
-                    13:00
-                </nb-text>
-                <!-- Label Styles -->
-                <nb-text :style="styles.label">
-                    Category
-                </nb-text>
-                <nb-text>
-                    Music
-                </nb-text>
-                <!-- Label Styles -->
-                <nb-text :style="styles.label">
-                    Info
-                </nb-text>
-                <!-- short info -->
-                <nb-text>
-                    Some nice short info
-                </nb-text>
-                </nb-body>
-            </nb-card-item>
-            <nb-card-item header bordered>
-                <nb-text>Description</nb-text>
-            </nb-card-item>
-            <nb-card-item bordered>
-                <nb-body>
-                <!-- description -->
-                <nb-text>
-                    NativeBase is a free and open source framework that enable developers to build high-quality mobile apps using React Native iOS and Android apps with a fusion of ES6.
-                </nb-text>
-                </nb-body>
-            </nb-card-item>
+                <nb-tabs>
+                    <nb-tab heading="Details">
+                        <MeetupDetailInfo :meetup="meetup" />
+                    </nb-tab>
+                    <nb-tab heading="Tab2">
+                        <text></text>
+                    </nb-tab>
+                    <nb-tab heading="Tab3">
+                        <text></text>
+                    </nb-tab>
+                </nb-tabs>
             </nb-card>
         </nb-content>
     </nb-container>
 </template>
 <script>
 import styles from '@/styles'
+import MeetupDetailInfo from '@/components/MeetupDetailInfo'
 export default {
+    components : {
+        MeetupDetailInfo
+    },
     props: {
         navigation: {
             type: Object
@@ -85,6 +48,12 @@ export default {
     computed: {
         meetup() {
             return this.$store.state.meetups.item
+        },
+        isMeetupLoaded () {
+            return Object.keys(this.meetup).length > 0
+        },
+        meetupCreator () {
+            return this.meetup.meetupCreator || {}
         }
     },
     created () {

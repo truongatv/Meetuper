@@ -7,7 +7,6 @@ export default {
       fontWeight: 'bold',
       marginBottom: 3,
       fontSize: 17,
-      paddingLeft: 20
     },
     centerContainer: {
       justifyContent: "space-between",
