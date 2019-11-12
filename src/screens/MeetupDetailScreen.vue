@@ -17,10 +17,10 @@
                     <nb-tab heading="Details">
                         <MeetupDetailInfo :meetup="meetup" />
                     </nb-tab>
-                    <nb-tab heading="Tab2">
+                    <nb-tab heading="Threads">
                         <text></text>
                     </nb-tab>
-                    <nb-tab heading="Tab3">
+                    <nb-tab heading="Joined People">
                         <text></text>
                     </nb-tab>
                 </nb-tabs>
@@ -54,11 +54,17 @@ export default {
         },
         meetupCreator () {
             return this.meetup.meetupCreator || {}
+        },
+        thread() {
+            return this.$store.state.threads.items
         }
     },
     created () {
         const meetupId = this.navigation.getParam('meetupId', 'undefined')
         this.$store.dispatch('meetups/fetchMeetupById', meetupId)
+        this.$store.dispatch('threads/fetchThreads', meetupId)
+            .then(threads => alert(threads))
+        // console.log(this.thread)
     }
 }
 </script>

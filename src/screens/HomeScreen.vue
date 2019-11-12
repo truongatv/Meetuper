@@ -35,7 +35,6 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('fetchTodo')
     this.$store.dispatch('meetups/fetchMeetups')
 
   },
