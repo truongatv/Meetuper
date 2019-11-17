@@ -4,7 +4,7 @@
       <nb-body>
         <!-- Label Styles -->
         <nb-text :style="styles.label">Date</nb-text>
-        <nb-text>{{meetup.startDate}}</nb-text>
+        <nb-text>{{meetup.startDate | formatDate}}</nb-text>
         <!-- Label Styles -->
         <nb-text :style="styles.label">From</nb-text>
         <nb-text>{{meetup.timeFrom}}</nb-text>

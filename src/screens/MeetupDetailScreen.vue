@@ -6,7 +6,7 @@
             <!-- meetup creator avatar  -->
             <nb-thumbnail :source="{uri: meetupCreator.avatar }" />
             <nb-text :style="styles.label">
-                by {{meetupCreator.name}}
+                by {{meetupCreator.name | upperCase}}
             </nb-text>
         </view>
         <!-- apply styles label and padding left -->
@@ -18,10 +18,10 @@
                         <MeetupDetailInfo :meetup="meetup" />
                     </nb-tab>
                     <nb-tab heading="Threads">
-                        <text></text>
+                        <MeetupThreads :threads="threads"/>
                     </nb-tab>
                     <nb-tab heading="Joined People">
-                        <text></text>
+                        <MeetupPeople :people="meetup.joinedPeople"/>
                     </nb-tab>
                 </nb-tabs>
             </nb-card>
@@ -31,9 +31,13 @@
 <script>
 import styles from '@/styles'
 import MeetupDetailInfo from '@/components/MeetupDetailInfo'
+import MeetupThreads from '@/components/MeetupThreads'
+import MeetupPeople from '@/components/MeetupPeople'
 export default {
     components : {
-        MeetupDetailInfo
+        MeetupDetailInfo,
+        MeetupThreads,
+        MeetupPeople
     },
     props: {
         navigation: {
@@ -55,7 +59,7 @@ export default {
         meetupCreator () {
             return this.meetup.meetupCreator || {}
         },
-        thread() {
+        threads() {
             return this.$store.state.threads.items
         }
     },
@@ -63,8 +67,6 @@ export default {
         const meetupId = this.navigation.getParam('meetupId', 'undefined')
         this.$store.dispatch('meetups/fetchMeetupById', meetupId)
         this.$store.dispatch('threads/fetchThreads', meetupId)
-            .then(threads => alert(threads))
-        // console.log(this.thread)
     }
 }
 </script>

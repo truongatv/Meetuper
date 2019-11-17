@@ -1,6 +1,5 @@
 import Vuex from 'vuex'
 import Vue from 'vue-native-core'
-import axios from 'axios'
 import meetups from './modules/meetups'
 import threads from './modules/threads'
 
